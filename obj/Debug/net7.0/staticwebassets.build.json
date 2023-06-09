@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "NnLSSHB0/sB+bFYxmWxZQZvkvi0TgUg87lYgH4A+IsY=",
+  "Source": "recipe_manager",
+  "BasePath": "_content/recipe_manager",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
