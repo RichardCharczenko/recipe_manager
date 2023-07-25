@@ -1,6 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using recipeAPI.Models;
 using Microsoft.Extensions.DependencyInjection;
+using Amazon.DynamoDBv2;
+using Amazon.DynamoDBv2.DataModel;
+using Amazon.Extensions.NETCore.Setup;
 
 var CORSAllowedOrigins = "_CORSAllowedOrigins";
 
@@ -15,10 +18,19 @@ builder.Services.AddCors(options =>
                       });
 });
 
+// AWS Profile information
+AWSOptions options = builder.Configuration.GetAWSOptions();
+
+// AWS credential configuration
+builder.Services.AddDefaultAWSOptions(options);
+
+
 builder.Services.AddControllers();
 builder.Services.AddDbContext<RecipeContext>(opt => opt.UseInMemoryDatabase("RecipeList"));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAWSService<IAmazonDynamoDB>();
+builder.Services.AddScoped<IDynamoDBContext, DynamoDBContext>();
 
 var app = builder.Build();
 
